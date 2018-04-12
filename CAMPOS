@@ -1,0 +1,78 @@
+CAMPOS
+
+q3 (union q1+q3)
+origemregistro
+datareferencia
+faseprocessual
+
+q4
+prop_chavesistemaorigem
+dim_sistema_judicial
+dim_fase_processual
+prop_numeroprocesso (from stageprocesso)
+prop_codigo_interno_processo = ( prop_chavesistemaorigem )
+prop_codigo_interno_processo_fase (|| faseprocessual )
+prop_numero_processo_fase (  numeroprocesso || faseprocessual )
+dim_processo_eletronico_boolean
+dim_cnj_tabela_classes 
+coalesce (,) dim_unidadejudiciaria
+prop_inicio_fase
+
+dim_inicio_fase
+
+dim_cnj_ano_mes_referencia
+
+
+
+q5
+prop_codigo_interno_processo_fase_unidade (q4 || dim_unidadejudiciaria)
+
+dim_dataprimeirojulgamento = dim_dataultimojulgamento
+prop_data
+
+--
+
+
+
+
+ prop_chavesistemaorigem 
+    faseprocessual 
+    origemregistro 
+    data_referencia 
+
+    dim_fase_processual -> id_fase_processual
+    prop_numeroprocesso -> numero_processo
+
+    prop_numero_processo_fase ->  numero_processo, se null então '' || '-' || faseprocessual, se null então ''
+
+    dim_processo_eletronico_boolean -> 
+    dim_assunto_pena_privativa_liberdade_boolean
+    dim_cnj_tabela_classes
+    dim_unidadejudiciaria
+    prop_inicio_fase
+
+    dim_cnj_ano_mes_referencia  
+    dim_data_inicio_ultima_suspensao_ativa  
+
+    dim_assunto_meta4_boolean (null)
+    dim_assunto_meta6_boolean (null)
+
+    dim_mov_85_complementos 
+
+    prop_codigo_interno_processo_fase_unidade -> id_dim_cnj_ano_mes_referencia (ano_referencia=2017 e mes_referencia=12)
+
+
+
+    prop_numero_processo_fase_unidade
+    dim_data_fim_fase
+    prop_data_fim_fase
+    dim_suspenso_repercursao_geral_boolean
+    dim_suspenso_recurso_repetitivo_boolean
+    dim_processo_dependente_sn_boolean
+    dim_cnj_tabela_classes_processoprincipal
+    dim_datainicioprocesso
+    dim_data_denuncia_mp
+    dim_arquivado_boolean
+    dim_data_redistribuicao
+    prop_data_redistribuicao
+    dim_redistribuido_ao_final_boolean
